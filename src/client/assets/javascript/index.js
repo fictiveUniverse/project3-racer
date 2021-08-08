@@ -220,24 +220,6 @@ async function handleAccelerate() {
 // HTML VIEWS ------------------------------------------------
 // Provided code - do not remove
 
-const playerList = {
-	"Racer 1": "Mario",
-	"Racer 2": "Peach",
-	"Racer 3": "Toad",
-	"Racer 4": "Bowser",
-	"Racer 5": "Yoshi"
-	//"Player 6": "Luigi"
-}
-
-const mapList = {
-	"Track 1": "Choco Mountain",
-	"Track 2": "Rainbow Road",
-	"Track 3": "Mario Raceway",
-	"Track 4": "Sherbet Land",
-	"Track 5": "Yoshi Valley",
-	"Track 6": "Moo Moo Farm"
-}
-
 function renderRacerCars(racers) {
 	if (!racers.length) {
 		return `
@@ -259,7 +241,7 @@ function renderRacerCard(racer) {
 
 	return `
 		<li class="card podracer" id="${id}">
-			<h3>${playerList[driver_name]}</h3>
+			<h3>${driver_name}</h3>
 			<p>Speed: ${top_speed}</p>
 			<p>Acceleration: ${acceleration}</p>
 			<p>Handling: ${handling}</p>
@@ -288,7 +270,7 @@ function renderTrackCard(track) {
 
 	return `
 		<li id="${id}" class="card track">
-			<h3>${mapList[name]}</h3>
+			<h3>${name}</h3>
 		</li>
 	`
 }
@@ -303,7 +285,7 @@ function renderCountdown(count) {
 function renderRaceStartView(track, racers) {
 	return `
 		<header>
-			<h1>Race: ${mapList[track.name]}</h1>
+			<h1>Race: ${track.name}</h1>
 		</header>
 		<main id="two-columns">
 			<section id="leaderBoard">
