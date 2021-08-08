@@ -132,9 +132,6 @@ function runRace(raceID)
 					renderAt('#race', resultsView(raceInfo.positions)) // to render the results view
 					resolve(raceInfo) // resolve the promise
 				}
-				else{
-
-				}
 			}, 500)
 		})
 	}
@@ -148,16 +145,16 @@ async function runCountdown() {
 	try {
 		// wait for the DOM to load
 		await delay(1000)
-		let timer = 3
+		let countdownTimer = 3
 
 		return new Promise(resolve => {
 			// TODO - use Javascript's built in setInterval method to count down once per second
 			const countDown = setInterval(() => {
 				
 				// run this DOM manipulation to decrement the countdown for the user
-				document.getElementById('big-numbers').innerHTML = --timer
+				document.getElementById('big-numbers').innerHTML = --countdownTimer
 
-				if(timer<=0)
+				if(countdownTimer<=0)
 				{
 					// TODO - if the countdown is done, clear the interval, resolve the promise, and return
 					clearInterval(countDown);
@@ -179,9 +176,11 @@ function handleSelectPodRacer(target) {
 	if(selected) {
 		selected.classList.remove('selected')
 	}
-
-	// add class selected to current target
-	target.classList.add('selected')
+	else
+	{
+		// add class selected to current target
+		target.classList.add('selected')
+	}
 
 	// TODO - save the selected racer to the store
 	store.player_id = parseInt(target.id);
@@ -213,7 +212,7 @@ async function handleAccelerate() {
 	}
 	catch(error)
 	{
-		console.log("Failed to accelerate when accelerate btn clicked - ", error.message);
+		console.log("Failed in handleAccelerate  - ", error.message);
 	}
 }
 
@@ -376,7 +375,7 @@ async function getTracks() {
 		return data;
 	}
 	catch (error) {
-		console.log("Failed to fetch tracks...", error.message)
+		console.log("Failed in getTracks -", error.message)
 	}
 }
 
@@ -388,7 +387,7 @@ async function getRacers() {
 		return data;
 	}
 	catch (error) {
-		console.log(`Failed to fetch racers...`, error.message)
+		console.log(`Failed in getRacers - `, error.message)
 	}
 }
 
@@ -404,7 +403,7 @@ function createRace(player_id, track_id) {
 		body: JSON.stringify(body)
 	})
 	.then(res => res.json())
-	.catch(err => console.log("Problem with createRace request::", err))
+	.catch(error => console.log("Failed in createRace - ", error.message))
 }
 
 async function getRace(id) {
@@ -415,7 +414,7 @@ async function getRace(id) {
 		return data;
 	}
 	catch (error) {
-			console.log("Failed to fetch race...", error.message)
+			console.log("Failed in getRace - ", error.message)
 		}	
 }
 
@@ -424,7 +423,7 @@ async function startRace(id) {
 		method: 'POST',
 		...defaultFetchOpts(),
 	})
-	.catch(err => console.log("Problem with getRace request::", err))
+	.catch(error => console.log("Failed in startRace - ", error.message))
 }
 
 async function accelerate(id) {
@@ -440,6 +439,6 @@ async function accelerate(id) {
 	}
 	catch(error)
 	{
-		console.log("Failed to accelerate - ", error.message);
+		console.log("Failed in accelerate - ", error.message);
 	}
 }
