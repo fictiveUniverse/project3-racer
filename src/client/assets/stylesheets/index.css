@@ -21,11 +21,11 @@ body {
 }
 
 header {
-  background-image: url('https://via.placeholder.com/1150');
-  background-size: cover;
+  background-image: url(../images/mario_kart_64.jpg);
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  height: 100vh;
+  height: 40vh;
   display: flex;
   justify-content: center;
   align-items: center;
