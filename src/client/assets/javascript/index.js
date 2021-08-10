@@ -128,7 +128,7 @@ function runRace(raceID)
 				// TODO - if the race info status property is "finished", run the following:
 				else if(raceInfo.status === "finished")
 				{
-					clearInterval(raceInterval) // to stop the interval from repeating
+					clearInterval(interval) // to stop the interval from repeating
 					renderAt('#race', resultsView(raceInfo.positions)) // to render the results view
 					resolve(raceInfo) // resolve the promise
 				}
